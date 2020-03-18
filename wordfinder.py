@@ -39,4 +39,15 @@ class WordFinder:
 
         return random.choice(self.list_words)
 
-    
+    class SpecialWordFinder(WordFinder):
+        """ Special word finder that gets rid of blank lines and comments.
+
+        """
+        def __init__(self,file_path):
+            """get parent class """
+            super().__init__(file_path)
+
+        def make_list(self):
+            "creating a list of words without blank lines and #mark"
+            words = super().make_list()
+        return [word for word in words if not word.startswith("#") and not word == ""]
